@@ -45,7 +45,7 @@
         })(qs);
     };
     
-    $.fn['renderer'] = function (options) {
+    $.fn['daumMapRender'] = function (options) {
         var options = options || {},
             win = options.win || window,
             callback = options.callback || function () {},
@@ -57,19 +57,18 @@
             var text = $(tar).data('text').toString();
             var zoom = $(tar).data('zoom') || 10;
 
-            var map = new win.daum.maps.Map(tar, {
-                center: new win.daum.maps.LatLng(lat, lng),
-                zoom: zoom,
-                mapTypeId: win.daum.maps.MapTypeId.ROADMAP
+            var map = new daum.maps.Map(tar, {
+                center: new daum.maps.LatLng(lat, lng),
+                zoom: zoom
             });
 
-            var myLatLng = new win.daum.maps.LatLng(lat, lng);
-            var marker = new win.daum.maps.Marker({
+            var myLatLng = new daum.maps.LatLng(lat, lng);
+            var marker = new daum.maps.Marker({
                 position: myLatLng,
                 map: map
             });
 
-            var infowindow = new win.daum.maps.InfoWindow({
+            var infowindow = new daum.maps.InfoWindow({
                 content: text
             });
 

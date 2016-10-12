@@ -14,14 +14,14 @@ XEeditor.tools.define({
 
         },
         beforeSubmit: function(targetEditor) {
-            $(targetEditor.document.$.querySelectorAll('[data-daummap]')).empty();
+            $(targetEditor.document.$.querySelectorAll('[data-daummap]')).empty().css({background: ''});
             targetEditor.updateElement();
         },
         editorLoaded: function(targetEditor) {
             var editorWindow = targetEditor.window.$;
 
             if($(targetEditor.document.$.querySelectorAll('[data-daummap]')).length > 0) {
-                $(targetEditor.document.$.querySelectorAll('[data-daummap]')).renderer({
+                $(targetEditor.document.$.querySelectorAll('[data-daummap]')).daumMapRender({
                     win: editorWindow,
                     callback: function (el) {
                         $(el).prepend('<button type="button" class="btnEditMap" style="position:absolute;z-index:1;left:0;top:0">Edit</button>');

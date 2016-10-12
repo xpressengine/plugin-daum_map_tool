@@ -89,10 +89,6 @@
             bindEvent: function() {
                 daum.maps.event.addListener(map, 'click', function(event) {
                     marker.setPosition(event.latLng);
-//                    map.setCenter(event.latLng);
-                });
-
-                daum.maps.event.addListener(marker, 'click', function() {
                     infowindow.open(map, marker);
                 });
 
@@ -123,8 +119,8 @@
                 }
             },
             appendToEditor: function() {
-                var lat = marker.getPosition().lat();
-                var lng = marker.getPosition().lng();
+                var lat = marker.getPosition().hb;
+                var lng = marker.getPosition().gb;
                 var text = $('#content').val();
 
                 var editorDoc = self.targetEditor.document.$;
@@ -132,10 +128,10 @@
                 var uuid = _generateUUID();
                 var width = $('#hSize').val() + $('#hSize').parent().find('.text-measure').text();
                 var height = $('#vSize').val() + $('#vSize').parent().find('.text-measure').text();
-                var zoom = map.getZoom();
+                var zoom = map.getLevel();
 
                 var dom = [
-                    '<div xe-tool-id="editortool/daummap@daummap"',
+                    '<div ',
                         ' id="daummap_' + uuid + '"',
 //                        ' contenteditable="true" data-daummap',
                         ' data-daummap',
@@ -152,10 +148,10 @@
                 var childWin = self;
 
                 appendToolContent(dom, function() {
-                    $(editorDoc.getElementById('daummap_' + uuid)).renderer({
+                    $(editorDoc.getElementById('daummap_' + uuid)).daumMapRender({
                         win: editorWindow,
                         callback: function(target) {
-                            var $btn = $('<button type="button" class="btnEditMap" style="position:absolute;z-index:1;left:0;top:0">Edit</button>').on('click', function() {
+                            var $btn = $('<button type="button" class="btnEditMap" style="position:absolute;z-index:10;left:0;top:0">Edit</button>').on('click', function() {
                                 var cWindow = parentWin.open(parentWin.daumToolURL.get('edit_popup'), 'editPopup', "width=750,height=930,directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no");
 
                                 $(cWindow).on('load', function() {

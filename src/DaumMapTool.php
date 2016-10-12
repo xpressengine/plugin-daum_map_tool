@@ -81,7 +81,7 @@ class DaumMapTool extends AbstractTool
         $crawler->filter('*[xe-tool-id="editortool/daummap@daummap"]')->each(function (Crawler $node, $i) {
             $dom = $node->getNode(0);
             $script = $dom->ownerDocument->createElement('script');
-            $txt = $dom->ownerDocument->createTextNode('$(function() { $("#' . $node->attr('id') . '").renderer(); })');
+            $txt = $dom->ownerDocument->createTextNode('$(function() { $("#' . $node->attr('id') . '").daumMapRender(); })');
             $script->appendChild($txt);
             $dom->appendChild($script);
 

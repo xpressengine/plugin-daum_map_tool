@@ -127,15 +127,15 @@
                 }
             },
             appendToEditor: function() {
-                var lat = marker.getPosition().lat();
-                var lng = marker.getPosition().lng();
+                var lat = marker.getPosition().hb;
+                var lng = marker.getPosition().gb;
                 var text = $('#content').val();
 
                 var editorWindow = self.targetEditor.window.$;
 
                 var width = $('#hSize').val() + $('#hSize').parent().find('.text-measure').text();
                 var height = $('#vSize').val() + $('#vSize').parent().find('.text-measure').text();
-                var zoom = map.getZoom();
+                var zoom = map.getLevel();
 
                 var parentWin = opener;
                 var childWin = self;
@@ -157,7 +157,7 @@
                 }).css({
                     width: width,
                     height: height
-                }).renderer({
+                }).daumMapRender({
                     win: editorWindow,
                     callback: function(target) {
                         var $btn = $('<button type="button" class="btnEditMap" style="position:absolute;z-index:1;left:0;top:0">Edit</button>').on('click', function() {
