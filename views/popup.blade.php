@@ -119,8 +119,8 @@
                 }
             },
             appendToEditor: function() {
-                var lat = marker.getPosition().hb;
-                var lng = marker.getPosition().gb;
+                var lat = marker.getPosition().ib;
+                var lng = marker.getPosition().hb;
                 var text = $('#content').val();
 
                 var editorDoc = self.targetEditor.document.$;
@@ -130,17 +130,19 @@
                 var height = $('#vSize').val() + $('#vSize').parent().find('.text-measure').text();
                 var zoom = map.getLevel();
 
+                var toolData = JSON.stringify({
+                    width: width,
+                    height: height,
+                    text: text,
+                    lat: lat,
+                    lng: lng,
+                    zoom: zoom
+                }).replace(/"/g, "'");
+
                 var dom = [
                     '<div ',
                         ' id="daummap_' + uuid + '"',
-//                        ' contenteditable="true" data-daummap',
-                        ' data-daummap',
-                        ' data-width="' + width + '"',
-                        ' data-height="' + height + '"',
-                        ' data-text="' + text + '"',
-                        ' data-lat="' + lat + '"',
-                        ' data-lng="' + lng + '"',
-                        ' data-zoom="' + zoom + '"',
+                        ' xe-tool-data="' + toolData + '"',
                         ' style="width:' + width + ';height:' + height + '"></div>'
                 ].join('\n');
 

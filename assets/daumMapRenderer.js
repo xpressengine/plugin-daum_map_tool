@@ -52,10 +52,11 @@
             $tar = this instanceof jQuery ? this : $(this);
 
         var render = function (tar, win, callback) {
-            var lat = $(tar).data('lat');
-            var lng = $(tar).data('lng');
-            var text = $(tar).data('text').toString();
-            var zoom = $(tar).data('zoom') || 10;
+            var toolData = JSON.parse($(tar).attr('xe-tool-data').replace(/'/g, '"'));
+            var lat = toolData.lat;
+            var lng = toolData.lng;
+            var text = toolData.text;
+            var zoom = toolData.zoom || 10;
 
             var map = new daum.maps.Map(tar, {
                 center: new daum.maps.LatLng(lat, lng),
@@ -86,7 +87,7 @@
         if(win.daum && win.daum.maps) {
             act();
         } else {
-            _jsLoad(win.document, '//apis.daum.net/maps/maps3.js?apikey=' + getParam('key'), act);
+            _jsLoad(win.document, '//dapi.kakao.com/v2/maps/sdk.js?appkey=' + getParam('key'), act);
         }
     }
 })(jQuery);

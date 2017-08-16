@@ -1,7 +1,7 @@
 @if ($config->get('key'))
 {{
 XeFrontend::js([
-    '//apis.daum.net/maps/maps3.js?apikey=' . $config->get('key'),
+    '//dapi.kakao.com/v2/maps/sdk.js?appkey=' . $config->get('key'),
     asset('plugins/daum_map_tool/assets/daumMapRenderer.js?key=' . $config->get('key'))
 ])->load()
 }}
@@ -79,13 +79,13 @@ XeFrontend::js([
 @if ($config->get('key'))
 <script type="text/javascript">
     $(function () {
-        var lat = $('input[name="lat"]').val(),
-            lng = $('input[name="lng"]').val(),
-            myLatLng = new daum.maps.LatLng(lat, lng);
+        var lat = $('input[name="lat"]').val();
+        var lng = $('input[name="lng"]').val();
+        var myLatLng = new daum.maps.LatLng(lat, lng);
 
         var map = new daum.maps.Map(document.getElementById('map-wrapper'), {
             center: myLatLng,
-            zoom: parseInt($('input[name="zoom"]').val())
+            level: parseInt($('input[name="zoom"]').val())
         });
 
         var marker = new daum.maps.Marker({
@@ -97,8 +97,8 @@ XeFrontend::js([
         daum.maps.event.addListener(map, 'center_changed', function (event) {
             marker.setPosition(map.getCenter());
 
-            $('input[name="lat"]').val(map.getCenter().hb);
-            $('input[name="lng"]').val(map.getCenter().gb);
+            $('input[name="lat"]').val(map.getCenter().ib);
+            $('input[name="lng"]').val(map.getCenter().hb);
             $('input[name="zoom"]').val(map.getLevel());
         });
     });

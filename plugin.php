@@ -49,7 +49,7 @@ class Plugin extends AbstractPlugin
                             $config = \XeConfig::getOrNew('daum_map_tool');
 
                             XeFrontend::js([
-                                '//apis.daum.net/maps/maps3.js?apikey=' . $config->get('key'),
+                                '//dapi.kakao.com/v2/maps/sdk.js?appkey=' . $config->get('key'),
                                 $this->asset('assets/daumMapRenderer.js?key=' . $config->get('key'))
                             ])->appendTo('head')->load();
 
@@ -80,7 +80,7 @@ class Plugin extends AbstractPlugin
                             $config = \XeConfig::getOrNew('daum_map_tool');
 
                             XeFrontend::js([
-                                '//apis.daum.net/maps/maps3.js?apikey=' . $config->get('key'),
+                                '//dapi.kakao.com/v2/maps/sdk.js?appkey=' . $config->get('key'),
                                 $this->asset('assets/daumMapRenderer.js?key=' . $config->get('key'))
                             ])->appendTo('head')->load();
 

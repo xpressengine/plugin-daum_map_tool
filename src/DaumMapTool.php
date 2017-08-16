@@ -46,7 +46,7 @@ class DaumMapTool extends AbstractTool
         </script>
         ")->load();
         XeFrontend::js([
-            '//apis.daum.net/maps/maps3.js?apikey=' . $config->get('key'),
+            '//dapi.kakao.com/v2/maps/sdk.js?appkey=' . $config->get('key'),
             asset($this->getAssetsPath() . '/daumMapTool.js'),
             asset($this->getAssetsPath() . '/daumMapRenderer.js?key=' . $config->get('key'))
         ])->load();
@@ -73,7 +73,7 @@ class DaumMapTool extends AbstractTool
         $config = $this->configs->getOrNew('daum_map_tool');
 
         XeFrontend::js([
-            '//apis.daum.net/maps/maps3.js?apikey=' . $config->get('key'),
+            '//dapi.kakao.com/v2/maps/sdk.js?appkey=' . $config->get('key'),
             asset($this->getAssetsPath() . '/daumMapRenderer.js?key=' . $config->get('key'))
         ])->load();
 
